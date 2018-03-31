@@ -8,8 +8,8 @@ This app will use machine learning to suggest recipes to a user based on the ing
 	- We will create the app in Android
 	
 ##### 2) Press enter. The app sends the list of ingredients to the BotChef server, where they are stored along with the user preferences.
-	- We will use Python __requests???__ library to send an HTTP POST request to send the data
-	- The ingredients will be sent in a JSON file
+	- The Android app sends a HTTP request to the web server along with a serialized list of ingredients. 
+	- The web server returns a JSON response containing a list of recipes ranked. 
 	
 ##### 3) Server finds a list of recipes that can be made with those ingredients
 	- We will use the ____ API to look up recipes based on ingredients
