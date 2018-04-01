@@ -1,5 +1,6 @@
 package rana.com.adjustablelayout;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -113,6 +114,10 @@ public class MainActivity extends AppCompatActivity {
 //                        Log.i(TAG, entry.getKey() + ": " + entry.getValue());
 //                    }
 //                }
+                Intent intent = new Intent(MainActivity.this,RecipeActivity.class);
+                intent.putExtra("ListExtra",list_hm);
+                startActivity(intent);
+
 
 
             } catch (JSONException e) {
