@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Bot Chef - Recipe Recommendation System</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+	
+	<script>
+		function httpGetAsync(theUrl, callback) {
+			
+			var xmlHttp = new XMLHttpRequest();
+			
+			//xmlHttp.onreadystatechange = function() { 
+			//	if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+			//		callback(xmlHttp.responseText);
+			//	}
+			//}
+			
+			xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+			xmlHttp.send(null);
+			console.log("sent to: " + theUrl);
+			return xmlHttp.responseText;
+		}
+		
+		function httpResponse () {
+			console.log ("received response");
+		}
+	</script>
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Start Bootstrap
+                    </a>
+                </li>
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li>
+                    <a href="#">Shortcuts</a>
+                </li>
+                <li>
+                    <a href="#">Overview</a>
+                </li>
+                <li>
+                    <a href="#">Events</a>
+                </li>
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">Logout</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <h1>Bot Chef</h1>
+                <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
+                <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
+                
+				<!--Insert ingredients text box-->
+				Ingredients:<textarea type="text" id="ingredient_box" class="container-fluid" rows="5" style="font-size: 18pt; height: 160px;"></textarea><br>
+				<br>
+				
+				<!--Get recipes button-->
+				<a href="#insert-ingredients" class="btn btn-secondary" id="insert-ingredients">Get Recipes!</a>
+				<br><br>
+				<a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">More Options</a>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+	
+	$("#insert-ingredients").click(function(e) {
+        e.preventDefault();
+        //$("#wrapper").toggleClass("toggled");
+		console.log("clicked get recipes");
+		
+		//get ingredients from text box
+		var ingredientString = document.getElementById('ingredient_box').value;
+		
+		//filter out useless characters
+		ingredientString = ingredientString.replace(/[^a-zA-Z,\s]+/g, '');
+		
+		//replace whitespace with commas
+		ingredientString = ingredientString.replace(/,?[\s]+/g, ',');
+		
+		// Don't send http request if the text box is blank
+		if (ingredientString == "") {
+			//notify user that need ingredients
+			alert("Please enter a list of ingredients");
+			return;
+		}
+		
+		console.log("Ingredients are: " + ingredientString);
+		
+		//Send HTTP get request for recipes
+		var URL = "https://recipe-recommend-jaykun.c9users.io/api/recipes/?i=" + ingredientString;
+		
+		var recipeSuggestions = httpGetAsync(URL, httpResponse);
+		
+		console.log("suggestions are: " + recipeSuggestions);
+		//var xmlHttp = new XMLHttpRequest();
+		//xmlHttp.open("GET", URL, true);
+		
+		//console.log("https://recipe-recommend-jaykun.c9users.io/api/recipes/?i=eggs,honey,flour")
+		
+    });
+    </script>
+
+</body>
+
+</html>
