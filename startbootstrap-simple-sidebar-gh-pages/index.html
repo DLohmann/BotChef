@@ -155,8 +155,11 @@
 
 			console.log ("recipeListJSON is: " + recipeListJSON);
 			
+			recipeSuggestions = recipeSuggestions.replace(/\"/g, "");
+			recipeSuggestions = recipeSuggestions.replace(/matches/g, "<br>");
+			recipeSuggestions = recipeSuggestions.replace(/name*/g, "<h1>$&</h1>");
 			recipeSuggestions = recipeSuggestions.replace(/,/g, "<br>");
-			
+			recipeSuggestions = recipeSuggestions.replace(/instructions/g, "<h3>$&</h3>");
 			//recipeSuggestions = recipeSuggestions.
 			
 			document.getElementById('recipe-section').innerHTML = recipeSuggestions;
