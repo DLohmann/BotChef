@@ -1,5 +1,7 @@
 package rana.com.adjustablelayout;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -23,6 +25,7 @@ public class RecipeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
+
         list_hm = (ArrayList<HashMap<String,String>>) getIntent().getSerializableExtra("ListExtra");
                         for(int i = 0; i < list_hm.size(); i++) {
                     for(Map.Entry<String,String> entry : list_hm.get(i).entrySet()) {
@@ -32,6 +35,8 @@ public class RecipeActivity extends AppCompatActivity {
 
         mToolbar = findViewById(R.id.toolbar);
         mToolbar.setTitle(getResources().getString(R.string.app_name));
+        mToolbar.setBackgroundColor(Color.parseColor("#80000000"));
+
         mRecyclerView = findViewById(R.id.recyclerview);
         GridLayoutManager mGridLayoutManager = new GridLayoutManager(RecipeActivity.this, 2);
         mRecyclerView.setLayoutManager(mGridLayoutManager);
@@ -39,9 +44,17 @@ public class RecipeActivity extends AppCompatActivity {
         mFlowerList = new ArrayList<>();
         for(int i = 0; i < list_hm.size(); i++) {
             String name = list_hm.get(i).get("name");
-            String details = "ingredients:\n" + list_hm.get(i).get("ingredients") + "\n\n" + "instructions\n" + list_hm.get(i).get("instructions");
+            String details = "<b>INGREDIENTS:</b>\n" + list_hm.get(i).get("ingredients") + "\n\n" + "<b>INSTRUCTIONS:</b>\n" + list_hm.get(i).get("instructions");
+            int j = i%4;
+            if(j==0)
             mFlowerData = new FlowerData(name, details,
                     R.drawable.chicken);
+            else if(j==1) mFlowerData = new FlowerData(name, details,
+                    R.drawable.beef);
+            else if(j==2) mFlowerData = new FlowerData(name, details,
+                    R.drawable.pork);
+            else mFlowerData = new FlowerData(name, details,
+                    R.drawable.salmon);
             mFlowerList.add(mFlowerData);
 //            for(Map.Entry<String,String> entry : list_hm.get(i).entrySet()) {
 //                Log.i(TAG, entry.getKey() + ": " + entry.getValue());
@@ -82,6 +95,11 @@ public class RecipeActivity extends AppCompatActivity {
 
         MyAdapter myAdapter = new MyAdapter(RecipeActivity.this, mFlowerList);
         mRecyclerView.setAdapter(myAdapter);
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, MainActivity.class));
     }
     
 }

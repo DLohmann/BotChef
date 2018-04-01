@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 //        RecipeName = (TextView) findViewById(R.id.name);
 //        RecipeItems = (TextView) findViewById(R.id.salary);
+        items="";
         initializeComponents();
     }
 
@@ -227,6 +228,16 @@ public class MainActivity extends AppCompatActivity {
         }
         adjustableLayout.invalidateView();
     }
+
+
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        if (resultCode == RESULT_OK) {
+//            // The user picked a contact.
+//            // The Intent's data Uri identifies which contact was selected.
+//            items="";
+//        }
+//    }
 }
 
 //https://recipe-recommend-jaykun.c9users.io/api/recipes/?i=eggs,honey,flour
