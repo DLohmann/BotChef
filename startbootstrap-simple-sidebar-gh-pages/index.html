@@ -93,7 +93,7 @@
 				<a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">More Options</a>
 			</div>
 			<br>
-			<h1></h1>
+			<p id="recipe-section"></p>
 		</div>
 		<!-- /#page-content-wrapper -->
 
@@ -140,6 +140,9 @@
 			// Send HTTP get request for recipes
 			var recipeSuggestions = httpGetAsync(URL);
 			
+			
+			
+			//*
 			//remove \n and \r characters
 			recipeSuggestions = recipeSuggestions.replace(/[\r\n]/g, "");
 			
@@ -151,17 +154,22 @@
 			var recipeListJSON = JSON.parse(recipeSuggestions);
 
 			console.log ("recipeListJSON is: " + recipeListJSON);
-
-			console.log("suggestions are: ");
-			//*
+			
+			recipeSuggestions = recipeSuggestions.replace(/,/g, "<br>");
+			
+			//recipeSuggestions = recipeSuggestions.
+			
+			document.getElementById('recipe-section').innerHTML = recipeSuggestions;
+			//console.log("suggestions are: ");
+			/*
 			for (var elem in recipeListJSON.results) {
 				console.log ("this element is" + typeof elem);
 				//console.log("object: %O", elem.name);
-				console.log("object: " + elem.stringify());
-				//console.log("\t" + elem);
+				//console.log("object: " + elem.stringify());
+				console.log(elem.info.name);
 				//document.write(elem);
 			}
-			//*/
+			*/
 
 
 			//var xmlHttp = new XMLHttpRequest();
