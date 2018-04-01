@@ -29,7 +29,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "PhotoGalleryFragment";
-    HashMap<String, String> hm = new HashMap<String, String>();
+
     ArrayList<HashMap<String,String>> list_hm = new ArrayList<HashMap<String,String>>();
     String items = "";
     String message, result;
@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
                         ingredients += ",";
                     }
                     ingredients = ingredients.substring(0,ingredients.length()-1);
+                    HashMap<String, String> hm = new HashMap<String, String>();
                     hm.put("ingredients",ingredients);
                     JSONObject obj3 = obj2.getJSONObject("info");
                     String name = obj3.getString("name");

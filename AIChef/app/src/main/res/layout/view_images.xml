@@ -26,5 +26,5 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:padding="5dp"
-        android:src="@drawable/abc_ic_clear_mtrl_alpha" />
+        android:src="@drawable/abc_ic_clear_material" />
 </LinearLayout>

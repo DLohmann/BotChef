@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="rana.com.adjustablelayout.RecipeActivity">
+    tools:context="rana.com.adjustablelayout.DetailActivity">
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="0dp"
@@ -19,14 +19,33 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:theme="@style/ThemeOverlay.AppCompat.Dark"/>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerview"
+    <ImageView
+        android:id="@+id/ivImage"
+        android:layout_width="800px"
+        android:layout_height="800px"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="9dp"
+        android:src="@drawable/rose"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        />
+
+
+    <TextView
+        android:id="@+id/tvDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:scrollbars="vertical"
+        android:layout_marginTop="292dp"
+        android:padding="5dp"
+        android:text="TextView"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolbar"/>
+        app:layout_constraintTop_toTopOf="@+id/toolbar"
+        android:maxLines = "100"
+        android:scrollbars = "vertical"
+        />
 </android.support.constraint.ConstraintLayout>
